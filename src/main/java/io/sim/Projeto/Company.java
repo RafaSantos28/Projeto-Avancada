@@ -1,5 +1,5 @@
 package io.sim.Projeto;
 
-public class Company {
+public class Company extends Thread {
     
 }
