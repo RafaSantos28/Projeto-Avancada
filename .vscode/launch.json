@@ -6,6 +6,69 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Account",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.Account",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
+            "name": "Route",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.Route",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
+            "name": "Car",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.Car",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
+            "name": "Company",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.Company",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
+            "name": "ClienteSocket",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.ClienteSocket",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
+            "name": "Servidor",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.Servidor",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
+            "name": "Cliente",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.Sockets.src.Cliente",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
+            "name": "AES",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.AES",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
+            "name": "Servidor",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.Sockets.src.Servidor",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

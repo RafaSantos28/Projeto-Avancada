@@ -1,14 +1,20 @@
 package io.sim.Projeto;
 
-public class Route {
+import io.sim.json.JSONObject;
 
+public class Route {
     private String id;
-    private String depart;
     private String edges;
 
-    public Route(String id, String depart, String edges) {
+    public Route(String json){
+        JSONObject obj = new JSONObject(json);
+
+        this.id = obj.getString("id");
+        this.edges = obj.getString("route");
+    }
+
+    public Route(String id,  String edges) {
         this.id = id;
-        this.depart = depart;
         this.edges = edges;
     }
     
@@ -16,17 +22,14 @@ public class Route {
         return id;
     }
 
-    public String getDepart() {
-        return depart;
-    }
-
     public String getEdges() {
         return edges;
     }
 
-    @Override
-    public String toString() {
-        return "Route{" + "id=" + id + ", depart=" + depart + ", edges=" + edges + '}';
+    public String toJSON(){
+        JSONObject obj = new JSONObject();
+        obj.put("id", this.id);
+        obj.put("route", this.edges);
+        return obj.toString();
     }
-
 }

@@ -2,39 +2,50 @@ package io.sim.Projeto;
 
 public class FuelEstation extends Thread {
 
-    private int quantCar = 2;
-    private int tempoDeAbastecimento = 2;
+    //Cliente do Alpha BAnk
 
-    public FuelEstation(int quantCar, int tempoDeAbastecimento) {
-        this.quantCar = quantCar;
-        this.tempoDeAbastecimento = tempoDeAbastecimento;
+    private int quantCar = 2;//quantiudade de bombas por vez
+    private int tempoDeAbastecimento = 2;//minutos
+    private double litrosAbastecer;
+    private double tamanhoTanque = 30;
+    private double litrosNoTanque;
+    private double quantidadeLitros;
+    
+    public FuelEstation(double litrosNoTanque, double litrosAbastecer) {
+        this.litrosAbastecer=litrosAbastecer;
+        this.litrosNoTanque=litrosNoTanque;
     }
     
     public int getQuantCar() {
         return quantCar;
     }
 
-    public int getTempoDeAbastecimento() {
-        return tempoDeAbastecimento;
-    }
-
-    public void setQuantCar(int quantCar) {
-        this.quantCar = quantCar;
-    }
-
-    public void setTempoDeAbastecimento(int tempoDeAbastecimento) {
-        this.tempoDeAbastecimento = tempoDeAbastecimento;
-    }
+    public double calculoAbastecer() {
+        this.quantidadeLitros = tamanhoTanque - litrosNoTanque ;
+        return this.litrosAbastecer;
+    } 
 
     @Override
     public void run() {
-        if (this.quantCar > 0) {
-            this.quantCar = this.quantCar - 1;
-            try {
-                this.sleep(this.tempoDeAbastecimento);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+        try{
+            ClienteSocket cliente = new ClienteSocket();
+
+            cliente.conectar(2000);
+
+            cliente.enviarMensagem("rota");
+
+            cliente.escutar(new ClienteSocketHandler() {
+                @Override
+                public void handle(String msg) {
+                    System.out.println(msg);
+                }
+            });
+        }
+        catch(Exception err){}
+
+        while(true){
+            if(this.litrosNoTanque<=3){
+                this.litrosNoTanque = this.litrosNoTanque + this.litrosAbastecer;
             }
         }
     }

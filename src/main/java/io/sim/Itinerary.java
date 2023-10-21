@@ -12,6 +12,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+
 public class Itinerary {
 
 	private boolean on;
@@ -71,4 +72,5 @@ public class Itinerary {
 	public boolean isOn() {
 		return this.on;
 	}
+
 }

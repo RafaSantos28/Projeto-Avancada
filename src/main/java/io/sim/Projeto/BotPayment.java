@@ -3,21 +3,53 @@ package io.sim.Projeto;
 public class BotPayment extends Thread {
     
     private double valorKm = 3.25;
-    private double valorConta;
-    private double kmRodado;
+    private int kmRodado; // para cada carro
+    
+    private double litroGas = 5.87; 
+    private double nivelTanque; // para cada carro
+    private double tamanhoDoTanque = 50; // para cada carro
+    
+    private double valorASerPago;// para ambos
+    private Account contaPagar;
+    private Account contaReceber;
 
-    public BotPayment(double valorConta, double kmRodado) {
-        this.valorConta = valorConta;
+    private String tipoCliente; 
+
+    public BotPayment(Account conta, Account conta2,int kmRodado, String tipoCliente) {
+        this.contaReceber = conta;
+        this.contaPagar = conta2; 
         this.kmRodado = kmRodado;
+        this.tipoCliente = tipoCliente;
+    }
+
+    public BotPayment(Account conta, Account conta2,double nivel, String tipoCliente) {
+        this.contaReceber = conta;
+        this.contaPagar = conta2; 
+        this.nivelTanque = nivel;
+        this.tipoCliente = tipoCliente;
     }
 
     //para o Drivers
-    public void calculoTrans(){
-        this.valorConta = this.valorConta + (this.kmRodado * this.valorKm);    
+    public void valorParaDriver(){
+        this.valorASerPago = this.kmRodado * this.valorKm;
+        contaPagar.setSaldo(contaPagar.getSaldo()-valorASerPago);
+        contaReceber.setSaldo(contaReceber.getSaldo()+valorASerPago);
+    }
+
+    public void valorParaFuelStation(){
+        this.valorASerPago = (tamanhoDoTanque - this.nivelTanque) * this.litroGas;
+        contaPagar.setSaldo(contaPagar.getSaldo()-valorASerPago);
+        contaReceber.setSaldo(contaReceber.getSaldo()+valorASerPago);
     }
 
     @Override
     public void run() {
-        calculoTrans();
+        if(this.tipoCliente.equals("Drivers")){
+            valorParaDriver();
+        }
+        if(this.tipoCliente.equals("FuelStation")){
+            valorParaFuelStation();
+        }
+
     }
 }

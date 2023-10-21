@@ -1,21 +1,25 @@
 package io.sim.Projeto;
 
+import java.util.ArrayList;
 
 public class Drivers extends Thread{
     
+    //Cliente para Alpha bank
+
     private Car car;
     private String name;
-    private boolean isRunning;
-    private boolean isStopped;
-    private boolean isRefueling;
-    //ArrayList<Route> routes = new ArrayList<Route>();
+    private int senhaConta;
+    
+    //BotPayment pagara por litro de combustivel 5,87 
+    private BotPayment botPayment;
 
-    public Drivers(Car car, String name, boolean isRunning, boolean isStopped, boolean isRefueling) {
+    private ArrayList<Route> routesExec = new ArrayList<>();
+    private ArrayList<Route> routesFinalaizadas = new ArrayList<>();
+
+
+    public Drivers(Car car, String name) {
         this.car = car;
         this.name = name;
-        this.isRunning = isRunning;
-        this.isStopped = isStopped;
-        this.isRefueling = isRefueling;
     }
 
     public Car getCar() {
@@ -26,43 +30,26 @@ public class Drivers extends Thread{
         return name;
     }
 
-    public boolean isIsRunning() {
-        return isRunning;
+    //metodos para array
+    public void getRoutesExec(){
+        for(Route route : routesExec){
+            System.out.println(route);
+        }
     }
 
-    public boolean isIsStopped() {
-        return isStopped;
-    }
-
-    public boolean isIsRefueling() {
-        return isRefueling;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
-
-    public void setIsRunning(boolean isRunning) {
-        this.isRunning = isRunning;
-    }
-
-    public void setIsStopped(boolean isStopped) {
-        this.isStopped = isStopped;
-    }
-
-    public void setIsRefueling(boolean isRefueling) {
-        this.isRefueling = isRefueling;
+    public void getRoutesFinalizadas(){
+        for(Route route : routesFinalaizadas){
+            System.out.println(route);
+        }
     }
 
     @Override
     public void run() {
-        if (this.isRunning == true) {
-            if (this.car.getFuel() >= 0) {
-                this.car.setFuel(this.car.getFuel() - 1);
-            }
-        } else {
-            if (this.car.getFuel() >= 0) {
-                this.car.setFuel(this.car.getFuel() - 1);
+        while(true){
+            if(routesExec.size() > 0){
+                Route route = routesExec.get(0);
+                routesExec.remove(0);
+                routesFinalaizadas.add(route);
             }
         }
     }
