@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import io.sim.Projeto.AlphaBank;
 import io.sim.Projeto.Drivers;
 import io.sim.Projeto.FuelEstation;
+import io.sim.Projeto.Relatorio;
 import io.sim.Projeto.Company;
 import it.polito.appeal.traci.SumoTraciConnection;
 
@@ -16,9 +17,10 @@ public class EnvSimulator extends Thread{
 	private Company company;
 	private AlphaBank alphaBank;
 	private FuelEstation fuelEstation;
-	
+	private Relatorio relatorio;
+
     public EnvSimulator(){
-		
+		this.relatorio = new Relatorio();
 		this.company = new Company();
 		this.alphaBank = new AlphaBank();
 		this.fuelEstation = new FuelEstation();
@@ -37,15 +39,17 @@ public class EnvSimulator extends Thread{
 
 		try {
 			sumo.runServer(12345);
+			
 			for (int i = 1; i < 100; i++) {
 			motoristas.add(new Drivers("Driver" + i, "CAR" + i, sumo));
 			}
 			for(Drivers motorista : motoristas){
 				motorista.start();
 			}
-	 		company.start();;
-			alphaBank.start();;
-		 	fuelEstation.start();;			
+	 		company.start();
+			alphaBank.start();
+		 	fuelEstation.start();			
+			relatorio.start();
 		
 		} 
 		catch (IOException e1) {
