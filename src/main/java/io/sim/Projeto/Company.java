@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.python.modules.thread.thread;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -62,8 +63,13 @@ public class Company extends Thread {
             new Servidor(5000,new ServidorHandler() { 
             @Override
             public String handle(String msg) {
-                //Tratar mensagens aqui. If (mensagem.equalsIgnoreCase(acao) return respostaEmJson
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
+                //Tratar mensagens aqui. If (mensagem.equalsIgnoreCase(acao) return respostaEmJson
                 if (msg.equalsIgnoreCase("rota")){
                     Route novaRotas = rotas.get(0);
                     rotasExecucao(novaRotas);
@@ -73,6 +79,10 @@ public class Company extends Thread {
                     Route rotaFinalizada = rotasExecucao.get(0);
                     rotasExecutadas(rotaFinalizada);
                 }
+                if(msg.equals("Relatorio")){
+                    System.out.println("Relatorio");
+                }
+
                 return "MENSAGEM INVÁLIDA";    
                 }
 
@@ -81,16 +91,19 @@ public class Company extends Thread {
             //Cliente do Alpha Bank
             try{
                 ClienteSocket cliente = new ClienteSocket();
-  
+                
                 cliente.conectar(2000);
-                cliente.enviarMensagem("Company");
+                //if(para cada Km rodado){
                 cliente.enviarMensagem("Pagar motorista");
+                cliente.enviarMensagem("Company");
                 cliente.escutar(new ClienteSocketHandler() {
                     @Override
                     public void handle(String msg) {
                          System.out.println(msg);
                     }
-              });
+                }
+                //}
+              );
             }
             catch(Exception err){}
         

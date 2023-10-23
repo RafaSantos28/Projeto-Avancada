@@ -5,7 +5,7 @@ public class FuelEstation extends Thread {
     //Cliente do Alpha BAnk
 
     private int quantCar = 2;//quantiudade de bombas por vez
-    private int tempoDeAbastecimento = 2;//minutos
+    private int tempoDeAbastecimento = 120000;//milissegundos
     private double litrosAbastecer;
     private double tamanhoTanque = 30;
     private double litrosNoTanque;

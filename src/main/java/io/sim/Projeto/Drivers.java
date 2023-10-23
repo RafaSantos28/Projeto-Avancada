@@ -106,16 +106,18 @@ public class Drivers extends Thread{
         //Alpha Bank
         try{
             ClienteSocket cliente = new ClienteSocket();
-
-            cliente.conectar(2000);
-            cliente.enviarMensagem("Driver");
-            cliente.enviarMensagem("Pagar posto");
-            cliente.escutar(new ClienteSocketHandler() {
-                @Override
-                public void handle(String msg) {
-                     System.out.println(msg);
+                //if(Combustivel Carro <=3){
+                cliente.conectar(2000);
+                cliente.enviarMensagem("Driver");
+                cliente.enviarMensagem("Pagar posto");
+                cliente.escutar(new ClienteSocketHandler() {
+                    @Override
+                    public void handle(String msg) {
+                            System.out.println(msg);
+                    }
                 }
-          });
+                //}
+          );
         }
         catch(Exception err){}
         

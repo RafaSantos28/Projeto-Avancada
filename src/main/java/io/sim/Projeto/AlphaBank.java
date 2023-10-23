@@ -30,36 +30,42 @@ public class AlphaBank extends Thread {
 			for(Account cont : contas){
 				cont.start();
 			}
-
+			
 			new Servidor(2000,new ServidorHandler() { 
 		    private BotPayment botPayment;
 			public String handle(String msg) {
-                //Tratar mensagens aqui. If (mensagem.equalsIgnoreCase(acao) return respostaEmJson
-                if (msg.equalsIgnoreCase("pagar motorista")){
-					for(Account conta : contas) {
-						if(conta.getTipoCliente().equals("Company")) {
-														Account contaPagar = conta;
-							Account contaReceber = getAccount();
-							//pegarKMcarro
-							//this.botPayment = new BotPayment(contaReceber, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
-							this.botPayment.start();
+        
+					//Tratar mensagens aqui. If (mensagem.equalsIgnoreCase(acao) return respostaEmJson
+					if (msg.equalsIgnoreCase("pagar motorista")){
+						for(Account conta : contas) {
+							if(conta.getTipoCliente().equals("Company")) {
+								Account contaPagar = conta;
+								Account contaReceber = getAccount();
+								//pegarKMcarro
+								//this.botPayment = new BotPayment(contaReceber, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
+								this.botPayment.start();
 
+							}
+						}
+					};
+					
+					if(msg.equals("pagar posto")){
+						for(Account conta : contas) {
+							if(conta.getTipoCliente().equals("Drivers")) {
+								Account contaPagar = conta;
+								Account contaReceber = getAccount();
+								//pegarKMcarro
+								//this.botPayment = new BotPayment(contaReceber, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
+								this.botPayment.start();
+							}
 						}
 					}
-				};
-                if(msg.equals("pagar posto")){
-                    for(Account conta : contas) {
-						if(conta.getTipoCliente().equals("Drivers")) {
-							Account contaPagar = conta;
-							Account contaReceber = getAccount();
-							//pegarKMcarro
-							//this.botPayment = new BotPayment(contaReceber, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
-							this.botPayment.start();
-						}
+
+					if(msg.equals("Fuel Station")){
+						System.out.println("relatorio de pagamentos ao FuelStation");
 					}
-                }
-                return "MENSAGEM INVÁLIDA";    
-                }
+            return "MENSAGEM INVÁLIDA";    
+            }
 
             }).start();
 		}
