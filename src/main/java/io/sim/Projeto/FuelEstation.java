@@ -11,9 +11,10 @@ public class FuelEstation extends Thread {
     private double litrosNoTanque;
     private double quantidadeLitros;
     
-    public FuelEstation(double litrosNoTanque, double litrosAbastecer) {
-        this.litrosAbastecer=litrosAbastecer;
-        this.litrosNoTanque=litrosNoTanque;
+    public FuelEstation(){
+        this.litrosNoTanque = 0;
+        this.litrosAbastecer = 0;
+        this.quantidadeLitros = 0;
     }
     
     public int getQuantCar() {
@@ -32,8 +33,7 @@ public class FuelEstation extends Thread {
 
             cliente.conectar(2000);
 
-            cliente.enviarMensagem("rota");
-
+            cliente.enviarMensagem("Fuel Station");
             cliente.escutar(new ClienteSocketHandler() {
                 @Override
                 public void handle(String msg) {

@@ -48,9 +48,6 @@ public class Company extends Thread {
 	      }
         
         // metodos array
-        public void getRotas() {
-          System.out.println("implementar");
-        }
         
         public void rotasExecucao(Route rota) {
                 this.rotas.remove(rota);
@@ -62,6 +59,7 @@ public class Company extends Thread {
                 this.rotasExecucao.remove(rota);
                 this.rotasExecutadas.add(rota);
         }
+
 
         @Override
         public void run() {
@@ -81,14 +79,31 @@ public class Company extends Thread {
                     Route rotaFinalizada = rotasExecucao.get(0);
                     rotasExecutadas(rotaFinalizada);
                 }
-
                 return "MENSAGEM INVÁLIDA";    
                 }
 
             }).start();
-                
+            
+            //Cliente do Alpha Bank
+            try{
+                ClienteSocket cliente = new ClienteSocket();
+  
+                cliente.conectar(2000);
+                cliente.enviarMensagem("Company");
+                cliente.enviarMensagem("Pagar motorista");
+                cliente.escutar(new ClienteSocketHandler() {
+                    @Override
+                    public void handle(String msg) {
+                         System.out.println(msg);
+                    }
+              });
+            }
+            catch(Exception err){}
+        
     
         }
+
+        
         
         // Criar relatorio
 

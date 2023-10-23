@@ -1,5 +1,7 @@
 package io.sim.Projeto;
 
+import de.tudresden.sumo.objects.SumoStringList;
+import de.tudresden.sumo.util.SumoCommand;
 import io.sim.json.JSONObject;
 
 public class Route {
@@ -31,5 +33,9 @@ public class Route {
         obj.put("id", this.id);
         obj.put("route", this.edges);
         return obj.toString();
+    }
+
+    public static SumoCommand add(String string, SumoStringList edge) {
+        return null;
     }
 }

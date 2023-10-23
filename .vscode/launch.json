@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BotPayment",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.BotPayment",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
+            "name": "AlphaBank",
+            "request": "launch",
+            "mainClass": "io.sim.Projeto.AlphaBank",
+            "projectName": "sim"
+        },
+        {
+            "type": "java",
             "name": "Account",
             "request": "launch",
             "mainClass": "io.sim.Projeto.Account",

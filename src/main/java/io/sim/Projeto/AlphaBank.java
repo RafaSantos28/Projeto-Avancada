@@ -3,9 +3,6 @@ package io.sim.Projeto;
 import java.util.ArrayList;
 
 public class AlphaBank extends Thread {
-	
-	//realiza interaçoes 4,5,6,7 da figura, realizando transaçoes financeiras 
-	//Company para Drivers e Drivers para FuelStation
 
 	private ArrayList<Account> contas;
 
@@ -21,11 +18,12 @@ public class AlphaBank extends Thread {
 	}
 
 	public Account getAccount() {
-		for(Account conta : this.contas) {
+		for(Account conta : contas) {
 			return conta;
 		}
 		return null;
 	}
+	
 
 	@Override
 		public void run() {
@@ -37,8 +35,9 @@ public class AlphaBank extends Thread {
 					for(Account conta : contas) {
 						if(conta.getTipoCliente().equals("Company")) {
 							Account contaPagar = conta;
+							Account contaReceber = getAccount();
 							//pegarKMcarro
-							//this.botPayment = new BotPayment(, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
+							//this.botPayment = new BotPayment(contaReceber, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
 						}
 					}
 				};
@@ -46,12 +45,12 @@ public class AlphaBank extends Thread {
                     for(Account conta : contas) {
 						if(conta.getTipoCliente().equals("Drivers")) {
 							Account contaPagar = conta;
+							Account contaReceber = getAccount();
 							//pegarKMcarro
-							//this.botPayment = new BotPayment(, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
+							//this.botPayment = new BotPayment(contaReceber, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
 						}
 					}
                 }
-
                 return "MENSAGEM INVÁLIDA";    
                 }
 

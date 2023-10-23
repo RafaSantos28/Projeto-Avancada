@@ -13,7 +13,7 @@ public class BotPayment extends Thread {
     private Account contaPagar;
     private Account contaReceber;
 
-    private String tipoCliente; 
+    private String tipoCliente; //onde sera feito o pagamento
 
     public BotPayment(Account conta, Account conta2,int kmRodado, String tipoCliente) {
         this.contaReceber = conta;
@@ -47,7 +47,7 @@ public class BotPayment extends Thread {
         if(this.tipoCliente.equals("Drivers")){
             valorParaDriver();
         }
-        if(this.tipoCliente.equals("FuelStation")){
+        else if(this.tipoCliente.equals("FuelStation")){
             valorParaFuelStation();
         }
 

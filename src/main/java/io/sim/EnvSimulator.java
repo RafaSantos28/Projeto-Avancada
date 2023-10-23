@@ -1,16 +1,29 @@
 package io.sim;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import de.tudresden.sumo.objects.SumoColor;
+import io.sim.Projeto.AlphaBank;
+import io.sim.Projeto.Drivers;
+import io.sim.Projeto.FuelEstation;
+import io.sim.Projeto.Company;
 import it.polito.appeal.traci.SumoTraciConnection;
 
 public class EnvSimulator extends Thread{
 
     private SumoTraciConnection sumo;
-
+	private ArrayList<Drivers> motoristas = new ArrayList<Drivers>();
+	private Company company;
+	private AlphaBank alphaBank;
+	private FuelEstation fuelEstation;
+	
     public EnvSimulator(){
-
+		for (int i = 1; i < 100; i++) {
+			motoristas.add(new Drivers("Driver" + i, "CAR" + i, sumo));
+		}
+		this.company = new Company();
+		this.alphaBank = new AlphaBank();
+		this.fuelEstation = new FuelEstation();
     }
 
     public void run(){
@@ -27,29 +40,13 @@ public class EnvSimulator extends Thread{
 		try {
 			sumo.runServer(12345);
 
-			Itinerary i1 = new Itinerary("data/dados2.xml", "0");
-
-			if (i1.isOn()) {
-
-				// fuelType: 1-diesel, 2-gasoline, 3-ethanol, 4-hybrid
-				int fuelType = 2;
-				int fuelPreferential = 2;
-				double fuelPrice = 3.40;
-				int personCapacity = 1;
-				int personNumber = 1;
-				SumoColor green = new SumoColor(0, 255, 0, 126);
-				Auto a1 = new Auto(true, "CAR1", green,"D1", sumo, 500, fuelType, fuelPreferential, fuelPrice, personCapacity, personNumber);
-				TransportService tS1 = new TransportService(true, "CAR1", i1, a1, sumo);
-				tS1.start();
-                Thread.sleep(5000);
-				a1.start();
-			}
+	 		company.start();;
+			alphaBank.start();;
+		 	fuelEstation.start();;			
 
 		
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
