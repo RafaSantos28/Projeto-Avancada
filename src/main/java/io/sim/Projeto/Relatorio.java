@@ -42,7 +42,7 @@ public class Relatorio extends Thread {
             // Salve o arquivo Excel em disco
             
             
-            while(nLinha < 10){
+            while(true){
             Row dataRow = sheet.createRow(nLinha);
             dataRow.createCell(0).setCellValue("Timestamp" + nLinha+ "novo dado");
             dataRow.createCell(1).setCellValue("Id Car" + nLinha+ "novo dado");

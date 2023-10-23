@@ -68,7 +68,6 @@ public class Company extends Thread {
                     e.printStackTrace();
                 }
 
-                //Tratar mensagens aqui. If (mensagem.equalsIgnoreCase(acao) return respostaEmJson
                 if (msg.equalsIgnoreCase("rota")){
                     Route novaRotas = rotas.get(0);
                     rotasExecucao(novaRotas);

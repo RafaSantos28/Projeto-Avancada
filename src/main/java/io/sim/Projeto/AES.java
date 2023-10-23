@@ -11,16 +11,6 @@ public class AES {
       encriptador.setPassword(chaveEncriptacao);
     }
 
-    public static void main(String[] args){
-      AES aes = new AES();
-      String mensagem = "Teste de criptografia";
-      String mensagemEncriptada = aes.encripta(mensagem);
-      String mensagemDecriptada = aes.decripta(mensagemEncriptada);
-      System.out.println("Mensagem Original: " + mensagem);
-      System.out.println("Mensagem Encriptada: " + mensagemEncriptada);
-      System.out.println("Mensagem Decriptada: " + mensagemDecriptada);
-    }
-
     public String encripta(String mensagem) {
         return this.encriptador.encrypt(mensagem);
     }

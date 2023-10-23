@@ -40,15 +40,20 @@ public class EnvSimulator extends Thread{
 		try {
 			sumo.runServer(12345);
 			
-			for (int i = 1; i < 100; i++) {
+			company.start();
+			
+			for (int i = 1; i < 101; i++) {
 			motoristas.add(new Drivers("Driver" + i, "CAR" + i, sumo));
 			}
 			for(Drivers motorista : motoristas){
 				motorista.start();
+				motorista.join();
 			}
-	 		company.start();
+	 		
 			alphaBank.start();
-		 	fuelEstation.start();			
+			fuelEstation.start();
+			System.out.println("FuelEstation terminou");
+			
 			relatorio.start();
 		
 		} 
