@@ -27,6 +27,10 @@ public class AlphaBank extends Thread {
 
 	@Override
 		public void run() {
+			for(Account cont : contas){
+				cont.start();
+			}
+
 			new Servidor(2000,new ServidorHandler() { 
 		    private BotPayment botPayment;
 			public String handle(String msg) {
@@ -34,10 +38,12 @@ public class AlphaBank extends Thread {
                 if (msg.equalsIgnoreCase("pagar motorista")){
 					for(Account conta : contas) {
 						if(conta.getTipoCliente().equals("Company")) {
-							Account contaPagar = conta;
+														Account contaPagar = conta;
 							Account contaReceber = getAccount();
 							//pegarKMcarro
 							//this.botPayment = new BotPayment(contaReceber, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
+							this.botPayment.start();
+
 						}
 					}
 				};
@@ -48,6 +54,7 @@ public class AlphaBank extends Thread {
 							Account contaReceber = getAccount();
 							//pegarKMcarro
 							//this.botPayment = new BotPayment(contaReceber, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
+							this.botPayment.start();
 						}
 					}
                 }

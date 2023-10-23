@@ -11,14 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class Company extends Thread {
-  /*public static void main(String[] args) {
-    Company company = new Company();
-
-    company.getRotas();
-
-    company.start();
-
-  }*/
+  
         // conjunto de rotas
         private ArrayList<Route> rotas = new ArrayList<>();
         private ArrayList<Route> rotasExecucao = new ArrayList<>();
@@ -27,7 +20,7 @@ public class Company extends Thread {
         //construtor da classe com as rotas
         public Company() {
 		      try {
-            //aquisicao de rotas
+              //aquisicao de rotas
 		      	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		      	DocumentBuilder builder = factory.newDocumentBuilder();
 		      	Document doc = builder.parse("map/map.rou.xml");
@@ -63,8 +56,9 @@ public class Company extends Thread {
 
         @Override
         public void run() {
-        // Servidor para cars e clients
-        //Os servidores devem ter portas diferentes
+            
+            // Servidor para cars e clients
+            //Os servidores devem ter portas diferentes
             new Servidor(5000,new ServidorHandler() { 
             @Override
             public String handle(String msg) {
@@ -103,8 +97,6 @@ public class Company extends Thread {
     
         }
 
-        
-        
         // Criar relatorio
 
 }

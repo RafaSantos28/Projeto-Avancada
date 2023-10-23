@@ -24,6 +24,8 @@ public class Drivers extends Thread{
         this.car = new Car(nomeCar, sumo);
         this.name = name;
         this.sumo = sumo;
+        Thread t1 = new Thread(car);
+        t1.start(); 
     }
 
     public Car getCar() {
@@ -70,7 +72,7 @@ public class Drivers extends Thread{
 
     @Override
     public void run() {
-
+        
         //Company
         try{
             ClienteSocket cliente = new ClienteSocket();
