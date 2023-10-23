@@ -52,8 +52,6 @@ public class EnvSimulator extends Thread{
 	 		
 			alphaBank.start();
 			fuelEstation.start();
-			System.out.println("FuelEstation terminou");
-			
 			relatorio.start();
 		
 		} 

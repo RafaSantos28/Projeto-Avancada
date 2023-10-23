@@ -21,16 +21,13 @@ public class Drivers extends Thread{
 
 
     public Drivers(String name, String nomeCar, SumoTraciConnection sumo) {
-        this.car = new Car(nomeCar, sumo);
         this.name = name;
         this.sumo = sumo;
+        this.car = new Car(nomeCar, sumo);
         Thread t1 = new Thread(car);
         t1.start(); 
     }
-
-    public Car getCar() {
-        return car;
-    }
+    
     
     public String getNome() {
         return name;
