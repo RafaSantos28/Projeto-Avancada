@@ -20,22 +20,48 @@ public class Relatorio extends Thread {
             
             // Crie uma nova planilha no arquivo
             Sheet sheet = workbook.createSheet("relatorio");
-
-            // Crie uma linha
-            Row row = sheet.createRow(0);
-
-            // Crie uma célula na linha
-            Cell cell = row.createCell(0);
-
-            // Defina o valor da célula
-            cell.setCellValue("Olá, Mundo!");
-
+            int nLinha = 1;
+            // Criar a primeira linha com cabeçalhos
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Timestamp");
+            headerRow.createCell(1).setCellValue("Id Car");
+            headerRow.createCell(2).setCellValue("Id Route");
+            headerRow.createCell(3).setCellValue("Speed");
+            headerRow.createCell(4).setCellValue("Distance");
+            headerRow.createCell(5).setCellValue("FuelConsumption");
+            headerRow.createCell(6).setCellValue("FuelType");
+            headerRow.createCell(7).setCellValue("CO2Emission");
+            headerRow.createCell(8).setCellValue("Longitude (lon)");
+            headerRow.createCell(9).setCellValue("latitude (lat)");
+            
+            
+            // Adicionar dados à planilha
+            
+            // Adicionar uma nova coluna (por exemplo, "E-mail")
+            
             // Salve o arquivo Excel em disco
-            try (FileOutputStream fileOut = new FileOutputStream("meuarquivo.xlsx")) {
+            
+            
+            while(nLinha < 10){
+            Row dataRow = sheet.createRow(nLinha);
+            dataRow.createCell(0).setCellValue("Timestamp" + nLinha+ "novo dado");
+            dataRow.createCell(1).setCellValue("Id Car" + nLinha+ "novo dado");
+            dataRow.createCell(2).setCellValue("Id Route" + nLinha+ "novo dado");
+            dataRow.createCell(3).setCellValue("Speed" + nLinha+ "novo dado");
+            dataRow.createCell(4).setCellValue("Distance" + nLinha+ "novo dado");
+            dataRow.createCell(5).setCellValue("FuelConsumption" + nLinha+ "novo dado");
+            dataRow.createCell(6).setCellValue("FuelType" + nLinha+ "novo dado");
+            dataRow.createCell(7).setCellValue("CO2Emission" + nLinha+ "novo dado");
+            dataRow.createCell(8).setCellValue("Longitude (lon)" + nLinha+ "novo dado");
+            dataRow.createCell(9).setCellValue("latitude (lat)" + nLinha + "novo dado");
+            nLinha++;
+            
+            try (FileOutputStream fileOut = new FileOutputStream("relatorio.xlsx")) {
                 workbook.write(fileOut);
             }
 
-            System.out.println("Arquivo Excel criado com sucesso.");
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
