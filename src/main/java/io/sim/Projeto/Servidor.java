@@ -23,12 +23,6 @@ public class Servidor extends Thread{
        this.handler=handler;
     }
 
-    // public static void main(String[] args ){
-    //     Servidor servidor = new Servidor(5000);
-
-    //     servidor.start();
-    // }
-
     @Override
     public void run(){
         try{

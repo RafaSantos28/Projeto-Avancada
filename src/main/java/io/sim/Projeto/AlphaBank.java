@@ -55,7 +55,7 @@ public class AlphaBank extends Thread {
 								Account contaPagar = conta;
 								Account contaReceber = getAccount();
 								//pegarKMcarro
-								//this.botPayment = new BotPayment(contaReceber, contaPagar, /*pegarkmcarro */, conta.getTipoCliente());
+								//this.botPayment = new BotPayment(contaReceber, contaPagar, /*Completar o tanque */, conta.getTipoCliente());
 								this.botPayment.start();
 							}
 						}
